@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+
+	<display-name>LIKE_IT</display-name>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/WEB-INF/tld/sort_btn.tld</taglib-uri>
+			<taglib-location>/WEB-INF/tdl/sort_btn.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+	<listener>
+		<listener-class>
+			by.epam.like_it.listener.ConnectionPoolListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			by.epam.like_it.listener.SessionListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			by.epam.like_it.listener.ServiceInitializeListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			by.epam.like_it.listener.CashListener
+		</listener-class>
+	</listener>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/not_found</location>
+	</error-page>
+	<error-page>
+		<!-- Missing login -->
+		<error-code>401</error-code>
+		<location>/not_found</location>
+	</error-page>
+	<error-page>
+		<!-- Forbidden directory listing -->
+		<error-code>403</error-code>
+		<location>/not_found</location>
+	</error-page>
+	<error-page>
+		<!-- Missing resource -->
+		<error-code>404</error-code>
+		<location>/not_found</location>
+	</error-page>
+	<error-page>
+		<!-- Uncaught exception -->
+		<error-code>500</error-code>
+		<location>/error</location>
+	</error-page>
+	<error-page>
+		<!-- Unsupported servlet method -->
+		<error-code>503</error-code>
+		<location>/error</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>java.io.IOException</exception-type>
+		<location>/error</location>
+	</error-page>
+
+	<!--someone cheat the parameters in request-->
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/not_found</location>
+	</error-page>
+
+
+	<servlet>
+        <servlet-name>Index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+		<servlet-name>Error</servlet-name>
+		<jsp-file>/WEB-INF/jsp/util/error.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Error</servlet-name>
+		<url-pattern>/error</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<servlet-name>NotFound</servlet-name>
+		<jsp-file>/WEB-INF/jsp/util/not_found.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NotFound</servlet-name>
+		<url-pattern>/not_found</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Main</servlet-name>
+		<jsp-file>/WEB-INF/jsp/main.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Main</servlet-name>
+		<url-pattern>/main</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Post</servlet-name>
+		<jsp-file>/WEB-INF/jsp/post.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Post</servlet-name>
+		<url-pattern>/post</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Registration</servlet-name>
+		<jsp-file>/WEB-INF/jsp/util/signUp.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Registration</servlet-name>
+		<url-pattern>/sign_up</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Logination</servlet-name>
+		<jsp-file>/WEB-INF/jsp/util/logIn.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Logination</servlet-name>
+		<url-pattern>/log_in</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Success</servlet-name>
+		<jsp-file>/WEB-INF/jsp/util/success.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Success</servlet-name>
+		<url-pattern>/success</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+	<servlet-name>Restoration</servlet-name>
+	<jsp-file>/WEB-INF/jsp/util/restore.jsp</jsp-file>
+</servlet>
+	<servlet-mapping>
+		<servlet-name>Restoration</servlet-name>
+		<url-pattern>/restore</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>User</servlet-name>
+		<jsp-file>/WEB-INF/jsp/user.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>User</servlet-name>
+		<url-pattern>/user</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>NewPost</servlet-name>
+		<jsp-file>/WEB-INF/jsp/personal/new_post.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewPost</servlet-name>
+		<url-pattern>/personal/new_post</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Profile</servlet-name>
+		<jsp-file>/WEB-INF/jsp/personal/profile.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Profile</servlet-name>
+		<url-pattern>/personal</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EditPost</servlet-name>
+		<jsp-file>/WEB-INF/jsp/personal/edit_post.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditPost</servlet-name>
+		<url-pattern>/personal/edit_post</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EditAnswer</servlet-name>
+		<jsp-file>/WEB-INF/jsp/personal/edit_answer.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditAnswer</servlet-name>
+		<url-pattern>/personal/edit_answer</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EditComment</servlet-name>
+		<jsp-file>/WEB-INF/jsp/personal/edit_comment.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditComment</servlet-name>
+		<url-pattern>/personal/edit_comment</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EditProfile</servlet-name>
+		<jsp-file>/WEB-INF/jsp/personal/edit_profile.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditProfile</servlet-name>
+		<url-pattern>/personal/edit_profile</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditSettings</servlet-name>
+        <jsp-file>/WEB-INF/jsp/personal/edit_settings.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditSettings</servlet-name>
+        <url-pattern>/personal/edit_settings</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+		<servlet-name>EditSubs</servlet-name>
+		<jsp-file>/WEB-INF/jsp/personal/edit_subscribing.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditSubs</servlet-name>
+		<url-pattern>/personal/edit_subscribing</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Feed</servlet-name>
+		<jsp-file>/WEB-INF/jsp/personal/feed.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Feed</servlet-name>
+		<url-pattern>/personal/feed</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Favorite</servlet-name>
+		<jsp-file>/WEB-INF/jsp/personal/favorite.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Favorite</servlet-name>
+		<url-pattern>/personal/favorite</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+        <display-name>FrontController</display-name>
+        <servlet-name>FrontController</servlet-name>
+        <servlet-class>by.epam.like_it.controller.FrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+        <servlet-name>FrontController</servlet-name>
+        <url-pattern>/FrontController</url-pattern>
+	</servlet-mapping>
+
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+
+	<filter>
+		<display-name>DebugFilter</display-name>
+		<filter-name>DebugFilter</filter-name>
+		<filter-class>by.epam.like_it.filter.DebugFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>DebugFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<display-name>EncodingFilter</display-name>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>by.epam.like_it.filter.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/FrontController</url-pattern>
+	</filter-mapping>
+
+
+	<filter>
+		<display-name>PageSecurityFilter</display-name>
+		<filter-name>PageSecurityFilter</filter-name>
+		<filter-class>by.epam.like_it.filter.PageSecurityFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>PageSecurityFilter</filter-name>
+	    <url-pattern>/FrontController</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<display-name>PostSecurityFilter</display-name>
+		<filter-name>PostSecurityFilter</filter-name>
+		<filter-class>by.epam.like_it.filter.PostSecurityFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PostSecurityFilter</filter-name>
+		<url-pattern>/FrontController</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<display-name>PrevQueryFilter</display-name>
+		<filter-name>PrevQueryFilter</filter-name>
+		<filter-class>by.epam.like_it.filter.PrevQueryFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrevQueryFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<display-name>PersonalSecurityFilter</display-name>
+		<filter-name>PersonalSecurityFilter</filter-name>
+		<filter-class>by.epam.like_it.filter.PersonalSecurityFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PersonalSecurityFilter</filter-name>
+		<url-pattern>/personal/*</url-pattern>
+	</filter-mapping>
+
+
+
+	<!--<filter>-->
+		<!--<display-name>SessionLockFilter</display-name>-->
+		<!--<filter-name>SessionLockFilter</filter-name>-->
+		<!--<filter-class>unusable.SessionLockFilter</filter-class>-->
+	<!--</filter>-->
+	<!--<filter-mapping>-->
+		<!--<filter-name>SessionLockFilter</filter-name>-->
+		<!--<url-pattern>/Controller</url-pattern>-->
+	<!--</filter-mapping>-->
+
+
+
+
+
+</web-app>
